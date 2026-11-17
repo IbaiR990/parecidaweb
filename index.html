@@ -1,158 +1,481 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Parecida — el mismo rollo, a tu precio</title>
-  <meta name="description" content="Parecida es un buscador visual de moda: le pasas una prenda y te recomienda alternativas de estética parecida en distintos rangos de precio, de marcas que puedes comprar en Europa.">
-  <style>
-    :root {
-      --ink: #1c1a17;
-      --muted: #6b655c;
-      --paper: #faf7f2;
-      --card: #ffffff;
-      --line: #e6e0d6;
-      --accent: #b8552f;
-      --accent-soft: #f6e5dc;
-    }
-    * { box-sizing: border-box; }
-    html, body { margin: 0; padding: 0; }
-    body {
-      font-family: Georgia, "Times New Roman", serif;
-      color: var(--ink);
-      background: var(--paper);
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-    }
-    .sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; }
-    .wrap { max-width: 880px; margin: 0 auto; padding: 0 24px; }
-    header { padding: 28px 0 8px; display: flex; justify-content: space-between; align-items: baseline; }
-    .logo { font-size: 22px; font-weight: 700; letter-spacing: -0.01em; text-decoration: none; color: var(--ink); }
-    .logo span { color: var(--accent); }
-    nav a { color: var(--muted); text-decoration: none; font-size: 14px; margin-left: 20px; }
-    nav a:hover { color: var(--ink); }
-    .hero { padding: 72px 0 56px; }
-    .hero h1 { font-size: clamp(34px, 6vw, 56px); line-height: 1.08; margin: 0 0 20px; font-weight: 700; letter-spacing: -0.02em; }
-    .hero h1 em { font-style: italic; color: var(--accent); }
-    .hero p.lead { font-size: 20px; color: var(--muted); max-width: 620px; margin: 0 0 28px; }
-    .badge { display: inline-block; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; background: var(--accent-soft); color: var(--accent); padding: 6px 12px; border-radius: 999px; margin-bottom: 20px; }
-    .btn { display: inline-block; background: var(--ink); color: #fff; padding: 12px 20px; border-radius: 8px; text-decoration: none; font-size: 15px; }
-    .btn:hover { background: #000; }
-    section { padding: 48px 0; border-top: 1px solid var(--line); }
-    h2 { font-size: 26px; margin: 0 0 24px; letter-spacing: -0.01em; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 20px; }
-    .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 22px; }
-    .card .n { display: inline-block; width: 28px; height: 28px; border-radius: 50%; background: var(--accent-soft); color: var(--accent); text-align: center; line-height: 28px; font-size: 14px; font-weight: 700; margin-bottom: 12px; }
-    .card h3 { margin: 0 0 8px; font-size: 18px; }
-    .card p { margin: 0; color: var(--muted); font-size: 15px; }
-    .example { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-    .example .orig, .example .alt { font-size: 15px; }
-    .example .label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 8px; }
-    .example .price { font-size: 22px; font-weight: 700; }
-    .example .why { color: var(--muted); margin-top: 8px; font-size: 14px; }
-    .tiers { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 12px; }
-    .tier { font-size: 13px; padding: 4px 10px; border: 1px solid var(--line); border-radius: 999px; background: var(--paper); }
-    .tier.on { border-color: var(--accent); color: var(--accent); }
-    .muted { color: var(--muted); }
-    .legal p { font-size: 14px; color: var(--muted); margin: 0 0 12px; }
-    footer { padding: 32px 0 48px; border-top: 1px solid var(--line); font-size: 13px; color: var(--muted); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
-    footer a { color: var(--muted); }
-    @media (max-width: 640px) {
-      .example { grid-template-columns: 1fr; }
-      nav a { margin-left: 14px; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Parecida — El mismo rollo, a tu precio</title>
+<meta name="description" content="Parecida es un buscador visual de moda: envía la foto de una prenda y recibe alternativas de estética parecida en distintos rangos de precio, de tiendas con envío a España.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='13' cy='16' r='9' fill='none' stroke='%23141110' stroke-width='2'/%3E%3Ccircle cx='25' cy='16' r='5' fill='%23141110'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#141110;
+  --ink-70:#4a4440;
+  --muted:#7c746d;
+  --paper:#fbfaf8;
+  --card:#ffffff;
+  --line:#e8e1d8;
+  --sand:#ece5db;
+  --sage:#dde3e0;
+  --blush:#f1e2da;
+  --mist:#e2e6ec;
+  --accent:#9c3f22;
+  --serif:"Instrument Serif",Georgia,"Times New Roman",serif;
+  --sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--paper);color:var(--ink);
+  font-family:var(--sans);font-size:16px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+}
+.wrap{max-width:1140px;margin:0 auto;padding:0 28px}
+h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.015em;line-height:1.06;text-wrap:balance}
+h1{font-size:clamp(44px,6.4vw,82px)}
+h2{font-size:clamp(30px,3.9vw,46px)}
+h3{font-size:20px;line-height:1.25}
+em{font-style:italic}
+p{text-wrap:pretty}
+a{color:inherit}
+
+/* ---------- header ---------- */
+header{position:sticky;top:0;z-index:40;background:rgba(251,250,248,.86);backdrop-filter:blur(12px);border-bottom:1px solid transparent;transition:border-color .2s}
+header.stuck{border-bottom-color:var(--line)}
+.bar{display:flex;align-items:center;justify-content:space-between;height:74px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.brand svg{display:block}
+.brand span{font-family:var(--serif);font-size:25px;letter-spacing:-.02em}
+nav{display:flex;align-items:center;gap:30px}
+nav a{font-size:14.5px;color:var(--ink-70);text-decoration:none;transition:color .15s}
+nav a:hover{color:var(--ink)}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  background:var(--ink);color:#fff;text-decoration:none;
+  font-size:14.5px;font-weight:500;padding:11px 20px;border-radius:7px;
+  transition:transform .15s,opacity .15s;white-space:nowrap;
+}
+.btn:hover{opacity:.88;transform:translateY(-1px)}
+.btn-lg{padding:15px 28px;font-size:15.5px}
+.btn-ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.btn-ghost:hover{background:#fff;opacity:1}
+
+/* ---------- labels ---------- */
+.eyebrow{
+  font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted);
+}
+.pill{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:12px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;
+  border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 14px;color:var(--ink-70);
+}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--accent);display:inline-block}
+
+/* ---------- hero ---------- */
+.hero{display:grid;grid-template-columns:1.02fr .98fr;gap:64px;align-items:center;padding:76px 0 96px}
+.hero .lead{font-size:19px;color:var(--ink-70);max-width:33em;margin:26px 0 34px}
+.hero h1{margin-top:26px}
+.cta-row{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.cta-note{font-size:13.5px;color:var(--muted)}
+
+/* collage */
+.collage{display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:122px;gap:14px}
+.tile{border-radius:16px;overflow:hidden;display:flex;align-items:center;justify-content:center;position:relative}
+.t-sand{background:var(--sand)}.t-sage{background:var(--sage)}
+.t-blush{background:var(--blush)}.t-mist{background:var(--mist)}
+.t-ink{background:var(--ink)}
+.tile.tall{grid-row:span 2}
+.tile svg{width:62%;height:62%}
+.tile .cap{position:absolute;left:14px;bottom:12px;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.price-tile{background:var(--card);border:1px solid var(--line);flex-direction:column;align-items:flex-start;justify-content:center;padding:18px;gap:3px}
+.price-tile .from{font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.price-tile .big{font-family:var(--serif);font-size:34px;line-height:1;font-variant-numeric:tabular-nums}
+.price-tile .was{font-size:13px;color:var(--muted);text-decoration:line-through;font-variant-numeric:tabular-nums}
+.t-ink .quote{color:#f2ede7;font-family:var(--serif);font-size:19px;line-height:1.25;padding:20px;font-style:italic}
+
+/* ---------- strip ---------- */
+.strip{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:22px 0}
+.strip ul{list-style:none;display:flex;gap:42px;flex-wrap:wrap;justify-content:space-between}
+.strip li{font-size:13.5px;color:var(--ink-70);display:flex;align-items:center;gap:10px}
+.strip svg{flex:none}
+
+/* ---------- sections ---------- */
+section{padding:104px 0}
+.sec-head{max-width:620px;margin-bottom:54px}
+.sec-head h2{margin-top:14px}
+.sec-head p{color:var(--ink-70);margin-top:16px;font-size:17.5px}
+.center{margin-left:auto;margin-right:auto;text-align:center}
+
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.step{border-top:1px solid var(--ink);padding-top:20px}
+.step .num{font-family:var(--serif);font-size:15px;color:var(--muted);display:block;margin-bottom:26px}
+.step h3{margin-bottom:9px}
+.step p{font-size:15px;color:var(--ink-70)}
+
+/* example */
+.example{background:#fff;border:1px solid var(--line);border-radius:22px;padding:34px;display:grid;grid-template-columns:272px 1fr;gap:34px}
+.src{border-right:1px solid var(--line);padding-right:34px;display:flex;flex-direction:column}
+.src .thumb{background:var(--sand);border-radius:14px;height:210px;display:flex;align-items:center;justify-content:center;margin-bottom:18px}
+.src .thumb svg{width:50%;height:72%}
+.src h3{font-size:19px;margin-bottom:6px}
+.src .meta{font-size:14px;color:var(--muted);margin-bottom:16px}
+.src .orig-price{font-family:var(--serif);font-size:30px;font-variant-numeric:tabular-nums}
+.src .budget{margin-top:auto;padding-top:18px;border-top:1px solid var(--line)}
+.src .budget .eyebrow{display:block;margin-bottom:10px}
+.tiers{display:flex;gap:8px;flex-wrap:wrap}
+.tier{font-size:13px;padding:6px 12px;border:1px solid var(--line);border-radius:999px;color:var(--muted)}
+.tier.on{border-color:var(--ink);color:var(--ink);background:var(--paper)}
+.results{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.res{display:flex;flex-direction:column}
+.res .ph{border-radius:14px;height:168px;display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+.res .ph svg{width:50%;height:72%}
+.res .rank{font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.res .name{font-size:15px;font-weight:500;margin-bottom:4px}
+.res .price{font-family:var(--serif);font-size:25px;font-variant-numeric:tabular-nums;margin-bottom:10px}
+.res .why{font-size:13.5px;color:var(--ink-70);line-height:1.5;border-top:1px solid var(--line);padding-top:10px}
+.res .match{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);margin-top:10px}
+.meter{width:46px;height:4px;border-radius:2px;background:var(--line);overflow:hidden}
+.meter i{display:block;height:100%;background:var(--accent)}
+.caption{font-size:13px;color:var(--muted);margin-top:18px}
+
+/* two-col */
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:72px}
+.cols p{color:var(--ink-70);margin-bottom:16px}
+.facts{list-style:none;margin-top:28px}
+.facts li{display:flex;gap:14px;padding:15px 0;border-top:1px solid var(--line);font-size:15px}
+.facts li b{font-weight:500;min-width:132px;flex:none}
+.facts li span{color:var(--ink-70)}
+
+/* cta band */
+.band{background:var(--ink);color:#f5f1ec;border-radius:24px;padding:72px 56px;text-align:center}
+.band h2{color:#fff}
+.band p{color:#bdb4ab;max-width:46em;margin:18px auto 32px;font-size:17px}
+.band .btn{background:#fff;color:var(--ink)}
+
+/* legal */
+.legal{border-top:1px solid var(--line);padding:72px 0 0}
+.legal h2{font-size:24px;margin-bottom:28px}
+.legal .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:34px 56px}
+.legal h3{font-size:14px;font-family:var(--sans);font-weight:600;margin-bottom:7px}
+.legal p{font-size:14px;color:var(--muted);line-height:1.62}
+
+footer{padding:56px 0 64px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:13.5px;color:var(--muted)}
+footer a{text-decoration:none}
+footer a:hover{color:var(--ink)}
+
+@media(max-width:980px){
+  .hero{grid-template-columns:1fr;gap:48px;padding:54px 0 72px}
+  .steps{grid-template-columns:repeat(2,1fr);gap:30px}
+  .example{grid-template-columns:1fr;padding:24px}
+  .src{border-right:0;border-bottom:1px solid var(--line);padding-right:0;padding-bottom:26px}
+  .cols{grid-template-columns:1fr;gap:44px}
+  nav .hide-sm{display:none}
+}
+@media(max-width:620px){
+  section{padding:72px 0}
+  .results{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr}
+  .legal .grid{grid-template-columns:1fr}
+  .band{padding:52px 26px}
+  .collage{grid-auto-rows:104px}
+}
+</style>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <a class="logo" href="#">Parecida<span>.</span></a>
-      <nav class="sans">
-        <a href="#como">Cómo funciona</a>
-        <a href="#tiendas">Tiendas</a>
-        <a href="#contacto">Contacto</a>
-      </nav>
-    </header>
 
-    <div class="hero">
-      <div class="badge sans">En desarrollo · Lanzamiento privado 2027</div>
+<header id="hdr">
+  <div class="wrap bar">
+    <a class="brand" href="#top">
+      <svg width="34" height="24" viewBox="0 0 34 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="9.4" fill="none" stroke="#141110" stroke-width="1.6"/>
+        <circle cx="25.5" cy="12" r="5.6" fill="#141110"/>
+      </svg>
+      <span>Parecida</span>
+    </a>
+    <nav>
+      <a class="hide-sm" href="#como">Cómo funciona</a>
+      <a class="hide-sm" href="#ejemplo">Un ejemplo</a>
+      <a class="hide-sm" href="#tiendas">Para tiendas</a>
+      <a class="btn" href="mailto:ibairaar@gmail.com?subject=Parecida%20—%20avísame%20del%20lanzamiento">Avísame</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+<div class="wrap">
+  <div class="hero">
+    <div>
+      <span class="pill"><i class="dot"></i> En desarrollo · acceso privado</span>
       <h1>El mismo rollo,<br><em>a tu precio.</em></h1>
-      <p class="lead">Pásale una prenda y Parecida te recomienda alternativas de estética parecida en distintos rangos de precio, de marcas que puedes comprar en Europa, explicándote qué cambia respecto al original.</p>
-      <a class="btn sans" href="mailto:ibairaar@gmail.com?subject=Parecida">Quiero probarla cuando esté lista</a>
+      <p class="lead">Mándale la foto de una prenda que te guste y Parecida te devuelve alternativas con la misma estética en el rango de precio que elijas, de tiendas que envían a España, explicándote exactamente qué cambia respecto al original.</p>
+      <div class="cta-row">
+        <a class="btn btn-lg" href="mailto:ibairaar@gmail.com?subject=Parecida%20—%20avísame%20del%20lanzamiento">Avísame del lanzamiento</a>
+        <span class="cta-note">Sin spam. Un correo cuando se abra.</span>
+      </div>
     </div>
 
-    <section id="como">
-      <h2>Cómo funciona</h2>
-      <div class="grid">
-        <div class="card">
-          <div class="n sans">1</div>
-          <h3>Pásale una prenda</h3>
-          <p>Una foto, una captura de Instagram o el enlace de una tienda. Y tu presupuesto.</p>
-        </div>
-        <div class="card">
-          <div class="n sans">2</div>
-          <h3>Entiende lo que importa</h3>
-          <p>Silueta, largo, tejido, textura, detalles y estética. No solo el color o la forma general.</p>
-        </div>
-        <div class="card">
-          <div class="n sans">3</div>
-          <h3>Te propone alternativas</h3>
-          <p>Ordenadas por parecido real, en escalones de precio, con enlace directo a la tienda.</p>
-        </div>
-        <div class="card">
-          <div class="n sans">4</div>
-          <h3>Te dice qué cambia</h3>
-          <p>Qué conservas y qué pierdes al bajar de precio: tejido, corte, acabados. Para decidir con criterio.</p>
-        </div>
+    <div class="collage" aria-hidden="true">
+      <div class="tile t-sand tall">
+        <svg viewBox="0 0 100 130" fill="none" stroke="#8d8378" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round">
+          <path d="M32 18 L16 26 L10 70 L24 74 L26 122 L74 122 L76 74 L90 70 L84 26 L68 18 L50 31 Z"/>
+          <path d="M32 18 L43 41 L50 31 L57 41 L68 18"/>
+          <path d="M50 31 L50 122"/>
+          <circle cx="54.5" cy="58" r="2"/><circle cx="54.5" cy="78" r="2"/><circle cx="54.5" cy="98" r="2"/>
+        </svg>
+        <span class="cap">Abrigo</span>
       </div>
-    </section>
+      <div class="tile t-sage">
+        <svg viewBox="0 0 100 100" fill="none" stroke="#7d8a84" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round">
+          <path d="M24 44 L76 44 L82 88 L18 88 Z"/>
+          <path d="M37 44 a13 13 0 0 1 26 0"/>
+          <path d="M18 60 L82 60" opacity=".45"/>
+        </svg>
+      </div>
+      <div class="tile price-tile">
+        <span class="from">Desde</span>
+        <span class="big">89&nbsp;€</span>
+        <span class="was">690 €</span>
+      </div>
+      <div class="tile t-mist">
+        <svg viewBox="0 0 100 110" fill="none" stroke="#7d8692" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round">
+          <path d="M38 14 L30 22 L36 42 L26 104 L74 104 L64 42 L70 22 L62 14 L50 24 Z"/>
+          <path d="M34 54 L66 54"/>
+        </svg>
+        <span class="cap">Vestido</span>
+      </div>
+      <div class="tile t-ink">
+        <p class="quote">“¿Conoces alguno parecido que valga menos?”</p>
+      </div>
+      <div class="tile t-blush">
+        <svg viewBox="0 0 100 110" fill="none" stroke="#a9867a" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round">
+          <path d="M34 16 L22 24 L18 56 L30 58 L32 96 L68 96 L70 58 L82 56 L78 24 L66 16 Z"/>
+          <path d="M34 16 L50 30 L66 16"/>
+          <path d="M32 72 L68 72" opacity=".5"/>
+        </svg>
+      </div>
+      <div class="tile t-sand">
+        <svg viewBox="0 0 100 100" fill="none" stroke="#8d8378" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round">
+          <path d="M30 20 L30 62 a20 20 0 0 0 40 0 L70 20"/>
+          <path d="M30 34 L70 34"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</div>
 
-    <section>
-      <h2>Un ejemplo</h2>
-      <div class="example">
-        <div class="orig">
-          <div class="label sans">La prenda que te gusta</div>
-          <div>Abrigo largo de lana, corte oversize, doble botonadura, color camel.</div>
-          <div class="price">690 €</div>
-          <div class="tiers sans">
-            <span class="tier">menos de 100 €</span>
-            <span class="tier on">100–250 €</span>
-            <span class="tier">250–500 €</span>
+<div class="strip">
+  <div class="wrap">
+    <ul>
+      <li>
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#9c3f22" stroke-width="1.7"><circle cx="11" cy="11" r="7"/><path d="M16 16l5 5"/></svg>
+        Busca por estética, no solo por color y forma
+      </li>
+      <li>
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#9c3f22" stroke-width="1.7"><path d="M3 12h18M12 3v18"/></svg>
+        Tres escalones de precio en cada búsqueda
+      </li>
+      <li>
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#9c3f22" stroke-width="1.7"><path d="M4 7h16M4 12h10M4 17h13"/></svg>
+        Te explica qué pierdes al bajar de precio
+      </li>
+      <li>
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#9c3f22" stroke-width="1.7"><path d="M12 21s7-5.2 7-11a7 7 0 1 0-14 0c0 5.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.4"/></svg>
+        Tiendas con envío a España
+      </li>
+    </ul>
+  </div>
+</div>
+
+<section id="como">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Cómo funciona</span>
+      <h2>Cuatro pasos entre “me encanta” y “me lo llevo”.</h2>
+      <p>Parecida no busca la misma foto: lee la prenda como lo haría alguien que entiende de moda y busca lo que de verdad se le parece.</p>
+    </div>
+    <div class="steps">
+      <article class="step">
+        <span class="num">01</span>
+        <h3>Pásale la prenda</h3>
+        <p>Una foto, una captura de Instagram o el enlace de una tienda. Y cuánto te quieres gastar.</p>
+      </article>
+      <article class="step">
+        <span class="num">02</span>
+        <h3>La lee de verdad</h3>
+        <p>Silueta, largo, tejido, textura, acabados y aire general. No se queda en “abrigo camel”.</p>
+      </article>
+      <article class="step">
+        <span class="num">03</span>
+        <h3>Busca en tres niveles</h3>
+        <p>Te enseña lo mejor dentro de tu presupuesto y qué conseguirías subiendo o bajando un escalón.</p>
+      </article>
+      <article class="step">
+        <span class="num">04</span>
+        <h3>Te cuenta la diferencia</h3>
+        <p>Qué conservas y qué sacrificas en cada opción, para que decidas con criterio y no por la foto.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="ejemplo" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Un ejemplo</span>
+      <h2>Un abrigo de 690&nbsp;€ y tres formas de tenerlo.</h2>
+    </div>
+
+    <div class="example">
+      <div class="src">
+        <div class="thumb">
+          <svg viewBox="0 0 100 130" fill="none" stroke="#8d8378" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round">
+            <path d="M32 18 L16 26 L10 70 L24 74 L26 122 L74 122 L76 74 L90 70 L84 26 L68 18 L50 31 Z"/>
+            <path d="M32 18 L43 41 L50 31 L57 41 L68 18"/>
+            <path d="M50 31 L50 122"/>
+            <circle cx="54.5" cy="58" r="2"/><circle cx="54.5" cy="78" r="2"/><circle cx="54.5" cy="98" r="2"/>
+          </svg>
+        </div>
+        <span class="eyebrow">La prenda que te gusta</span>
+        <h3 style="margin-top:10px">Abrigo largo de lana</h3>
+        <p class="meta">Oversize · doble botonadura · camel · lana 100&nbsp;% con forro de seda</p>
+        <span class="orig-price">690&nbsp;€</span>
+        <div class="budget">
+          <span class="eyebrow">Tu presupuesto</span>
+          <div class="tiers">
+            <span class="tier">&lt; 100&nbsp;€</span>
+            <span class="tier on">100–250&nbsp;€</span>
+            <span class="tier">250–500&nbsp;€</span>
           </div>
         </div>
-        <div class="alt">
-          <div class="label sans">Una alternativa parecida</div>
-          <div>Abrigo largo de mezcla de lana, corte oversize, doble botonadura, color camel.</div>
-          <div class="price">189 €</div>
-          <div class="why">Mismo corte y largo. Lana 60 % en vez de 100 %. Sin forro de seda. Ahorras 501 €.</div>
-        </div>
       </div>
-      <p class="muted" style="font-size:14px; margin-top:12px;">Ejemplo ilustrativo del formato de resultado. Los productos y precios reales dependerán de la disponibilidad en las tiendas asociadas.</p>
-    </section>
 
-    <section id="tiendas">
-      <h2>Tiendas y transparencia</h2>
-      <p>Las recomendaciones de Parecida enlazan a las tiendas online de las marcas. Trabajamos con programas de afiliación: si compras a través de uno de nuestros enlaces, la tienda puede pagarnos una pequeña comisión, sin coste adicional para ti. Eso no influye en el orden de los resultados, que se basa únicamente en el parecido con la prenda que nos has pasado y en el rango de precio que has elegido.</p>
-      <p>Nos centramos en marcas con envío a España y al resto de Europa, de distintos niveles de precio y calidad, para que siempre haya una opción comprable de verdad.</p>
-    </section>
+      <div>
+        <div class="results">
+          <article class="res">
+            <div class="ph t-sage">
+              <svg viewBox="0 0 100 130" fill="none" stroke="#7d8a84" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round">
+                <path d="M32 18 L16 26 L10 70 L24 74 L26 122 L74 122 L76 74 L90 70 L84 26 L68 18 L50 31 Z"/>
+                <path d="M32 18 L43 41 L50 31 L57 41 L68 18"/><path d="M50 31 L50 122"/>
+                <circle cx="54.5" cy="62" r="2"/><circle cx="54.5" cy="86" r="2"/>
+              </svg>
+            </div>
+            <span class="rank">La más cercana</span>
+            <span class="name">Abrigo oversize de lana</span>
+            <span class="price">320&nbsp;€</span>
+            <p class="why">Mismo corte y largo. Lana 80&nbsp;% y forro de viscosa. Botón forrado en vez de asta.</p>
+            <span class="match"><span class="meter"><i style="width:91%"></i></span> 91&nbsp;% parecida</span>
+          </article>
 
-    <section id="contacto">
-      <h2>Contacto</h2>
-      <p>Parecida está en desarrollo. Si eres una marca, una tienda o simplemente quieres probarla cuando esté lista, escríbenos a <a href="mailto:ibairaar@gmail.com">ibairaar@gmail.com</a>.</p>
-    </section>
+          <article class="res">
+            <div class="ph t-sand">
+              <svg viewBox="0 0 100 130" fill="none" stroke="#8d8378" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round">
+                <path d="M32 18 L16 26 L10 70 L24 74 L26 120 L74 120 L76 74 L90 70 L84 26 L68 18 L50 31 Z"/>
+                <path d="M32 18 L43 41 L50 31 L57 41 L68 18"/><path d="M50 31 L50 120"/>
+                <circle cx="54.5" cy="64" r="2"/>
+              </svg>
+            </div>
+            <span class="rank">Tu presupuesto</span>
+            <span class="name">Abrigo recto de mezcla</span>
+            <span class="price">189&nbsp;€</span>
+            <p class="why">Mismo largo y solapa. Lana 60&nbsp;%. Hombro algo menos caído y sin forro de seda.</p>
+            <span class="match"><span class="meter"><i style="width:84%"></i></span> 84&nbsp;% parecida</span>
+          </article>
 
-    <section class="legal" id="legal">
-      <h2>Aviso legal y privacidad</h2>
-      <p><strong>Titular:</strong> Parecida es un proyecto en desarrollo gestionado por un particular con residencia en España. Contacto: ibairaar@gmail.com.</p>
-      <p><strong>Datos personales:</strong> esta página no utiliza cookies de seguimiento ni recoge datos de forma automática. Si nos escribes por email, usaremos tu dirección solo para responderte y, si nos lo pides, para avisarte del lanzamiento. Puedes solicitar la eliminación de tus datos en cualquier momento escribiendo a la misma dirección.</p>
-      <p><strong>Afiliación:</strong> los enlaces a tiendas pueden ser enlaces de afiliado. Parecida no vende productos ni interviene en la compra, que se realiza directamente en la tienda correspondiente y bajo sus condiciones.</p>
-      <p><strong>Marcas:</strong> los nombres de marcas y productos que aparezcan pertenecen a sus respectivos titulares y se usan únicamente con fines descriptivos.</p>
-    </section>
-
-    <footer class="sans">
-      <div>© 2026 Parecida · Proyecto en desarrollo</div>
-      <div><a href="#legal">Aviso legal</a> · <a href="mailto:ibairaar@gmail.com">ibairaar@gmail.com</a></div>
-    </footer>
+          <article class="res">
+            <div class="ph t-blush">
+              <svg viewBox="0 0 100 130" fill="none" stroke="#a9867a" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round">
+                <path d="M34 20 L18 28 L13 68 L26 72 L28 116 L72 116 L74 72 L87 68 L82 28 L66 20 L50 32 Z"/>
+                <path d="M34 20 L44 42 L50 32 L56 42 L66 20"/><path d="M50 32 L50 116"/>
+              </svg>
+            </div>
+            <span class="rank">Si aprietas</span>
+            <span class="name">Abrigo largo de paño</span>
+            <span class="price">89&nbsp;€</span>
+            <p class="why">Silueta parecida de lejos. Lana 25&nbsp;%, tacto más rígido y caída más corta.</p>
+            <span class="match"><span class="meter"><i style="width:66%"></i></span> 66&nbsp;% parecida</span>
+          </article>
+        </div>
+        <p class="caption">Ejemplo ilustrativo del formato de resultado. Las prendas, precios y porcentajes mostrados no corresponden a productos reales; dependerán del catálogo disponible en cada momento.</p>
+      </div>
+    </div>
   </div>
+</section>
+
+<section id="tiendas" style="padding-top:0">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <span class="eyebrow">Para tiendas y marcas</span>
+        <h2 style="margin:14px 0 22px">Tráfico que llega sabiendo lo que quiere.</h2>
+        <p>Parecida no es un sitio de cupones ni de cashback: el usuario llega con una prenda concreta en la cabeza y un presupuesto decidido. Cuando una de vuestras piezas es la respuesta, la enseñamos con su foto, su precio y un enlace directo a vuestra ficha de producto.</p>
+        <p>Integramos catálogos a través de programas de afiliación. Si una compra se produce a través de uno de nuestros enlaces, la tienda nos paga una comisión; el usuario no paga nada de más y el orden de los resultados no se ve afectado: depende solo del parecido con la prenda buscada y del rango de precio elegido.</p>
+        <p style="margin-top:26px"><a class="btn btn-ghost" href="mailto:ibairaar@gmail.com?subject=Parecida%20—%20marcas%20y%20tiendas">Hablar con nosotros</a></p>
+      </div>
+      <div>
+        <span class="eyebrow">En resumen</span>
+        <ul class="facts">
+          <li><b>Qué es</b><span>Buscador visual de alternativas de moda por estética y precio.</span></li>
+          <li><b>Modelo</b><span>Comparador. Afiliación, sin cupones, cashback ni pujas en buscadores.</span></li>
+          <li><b>Mercado</b><span>España, con marcas que envían dentro de Europa.</span></li>
+          <li><b>Público</b><span>Principalmente mujeres de 25 a 45 años interesadas en moda.</span></li>
+          <li><b>Estado</b><span>En desarrollo. Pruebas privadas antes de la apertura.</span></li>
+          <li><b>Contacto</b><span><a href="mailto:ibairaar@gmail.com">ibairaar@gmail.com</a></span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="band">
+      <h2>Se abre pronto, y en privado.</h2>
+      <p>Estamos afinando el buscador con prendas reales antes de dejar entrar a nadie. Déjanos tu correo y te avisamos cuando haya sitio.</p>
+      <a class="btn btn-lg" href="mailto:ibairaar@gmail.com?subject=Parecida%20—%20avísame%20del%20lanzamiento">Avísame del lanzamiento</a>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="legal" id="legal">
+    <h2>Aviso legal y privacidad</h2>
+    <div class="grid">
+      <div>
+        <h3>Titular</h3>
+        <p>Parecida es un proyecto en desarrollo gestionado por un particular con residencia fiscal en España. Para cualquier cuestión relacionada con este sitio: ibairaar@gmail.com.</p>
+      </div>
+      <div>
+        <h3>Datos personales</h3>
+        <p>Este sitio no utiliza cookies de seguimiento ni analítica de terceros, y no recoge datos de forma automática. Si nos escribes, usaremos tu dirección únicamente para responderte y, si lo pides, para avisarte del lanzamiento. Puedes solicitar su eliminación en cualquier momento en la misma dirección.</p>
+      </div>
+      <div>
+        <h3>Enlaces de afiliación</h3>
+        <p>Los enlaces a tiendas pueden ser enlaces de afiliado: si compras a través de ellos, la tienda puede abonarnos una comisión sin coste adicional para ti. Parecida no vende productos ni interviene en la compra, que se realiza en la tienda correspondiente y bajo sus condiciones de venta, envío y devolución.</p>
+      </div>
+      <div>
+        <h3>Marcas y contenidos</h3>
+        <p>Los nombres de marcas, productos e imágenes que puedan mostrarse pertenecen a sus respectivos titulares y se utilizan con fines descriptivos e informativos. Las ilustraciones de esta página son originales y no representan productos concretos.</p>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <span>© 2026 Parecida · Proyecto en desarrollo</span>
+    <span><a href="#legal">Aviso legal</a> &nbsp;·&nbsp; <a href="mailto:ibairaar@gmail.com">ibairaar@gmail.com</a></span>
+  </footer>
+</div>
+
+</main>
+
+<script>
+  var hdr = document.getElementById('hdr');
+  var onScroll = function(){ hdr.classList.toggle('stuck', window.scrollY > 8); };
+  window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+</script>
 </body>
 </html>
